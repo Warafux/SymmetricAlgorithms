@@ -30,21 +30,31 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textbox_loadedFileSize = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textbox_loadedFileExtension = new System.Windows.Forms.TextBox();
+            this.picturebox_loadedFileIcon = new System.Windows.Forms.PictureBox();
+            this.textbox_loadedFileName = new System.Windows.Forms.TextBox();
             this.button_loadFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textbox_fileDir = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button_textDecrypt = new System.Windows.Forms.Button();
+            this.textbox_textPassword = new System.Windows.Forms.TextBox();
+            this.button_textEncrypt = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_textInput = new System.Windows.Forms.TextBox();
             this.openFileDialog_loadFile = new System.Windows.Forms.OpenFileDialog();
-            this.textbox_loadedFileName = new System.Windows.Forms.TextBox();
-            this.picturebox_loadedFileIcon = new System.Windows.Forms.PictureBox();
-            this.textbox_loadedFileExtension = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textbox_loadedFileSize = new System.Windows.Forms.TextBox();
+            this.saveFileDialog_saveFile = new System.Windows.Forms.SaveFileDialog();
+            this.button_fileEncrypt = new System.Windows.Forms.Button();
+            this.textbox_filePassword = new System.Windows.Forms.TextBox();
+            this.button_fileDecrypt = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_loadedFileIcon)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -54,11 +64,14 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(502, 150);
+            this.tabControl1.Size = new System.Drawing.Size(502, 259);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button_fileDecrypt);
+            this.tabPage1.Controls.Add(this.textbox_filePassword);
+            this.tabPage1.Controls.Add(this.button_fileEncrypt);
             this.tabPage1.Controls.Add(this.textbox_loadedFileSize);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label3);
@@ -72,20 +85,71 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(494, 124);
+            this.tabPage1.Size = new System.Drawing.Size(494, 233);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "File";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // textbox_loadedFileSize
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(494, 150);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Text";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.textbox_loadedFileSize.Location = new System.Drawing.Point(77, 89);
+            this.textbox_loadedFileSize.Name = "textbox_loadedFileSize";
+            this.textbox_loadedFileSize.ReadOnly = true;
+            this.textbox_loadedFileSize.Size = new System.Drawing.Size(172, 20);
+            this.textbox_loadedFileSize.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(266, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "File extension";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Icon";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(74, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "File name";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // textbox_loadedFileExtension
+            // 
+            this.textbox_loadedFileExtension.Location = new System.Drawing.Point(269, 46);
+            this.textbox_loadedFileExtension.Name = "textbox_loadedFileExtension";
+            this.textbox_loadedFileExtension.ReadOnly = true;
+            this.textbox_loadedFileExtension.Size = new System.Drawing.Size(100, 20);
+            this.textbox_loadedFileExtension.TabIndex = 7;
+            this.textbox_loadedFileExtension.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // picturebox_loadedFileIcon
+            // 
+            this.picturebox_loadedFileIcon.Location = new System.Drawing.Point(7, 45);
+            this.picturebox_loadedFileIcon.Name = "picturebox_loadedFileIcon";
+            this.picturebox_loadedFileIcon.Size = new System.Drawing.Size(64, 64);
+            this.picturebox_loadedFileIcon.TabIndex = 1;
+            this.picturebox_loadedFileIcon.TabStop = false;
+            // 
+            // textbox_loadedFileName
+            // 
+            this.textbox_loadedFileName.Location = new System.Drawing.Point(77, 46);
+            this.textbox_loadedFileName.Name = "textbox_loadedFileName";
+            this.textbox_loadedFileName.ReadOnly = true;
+            this.textbox_loadedFileName.Size = new System.Drawing.Size(172, 20);
+            this.textbox_loadedFileName.TabIndex = 6;
             // 
             // button_loadFile
             // 
@@ -113,67 +177,95 @@
             this.textbox_fileDir.Size = new System.Drawing.Size(346, 20);
             this.textbox_fileDir.TabIndex = 3;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.button_textDecrypt);
+            this.tabPage2.Controls.Add(this.textbox_textPassword);
+            this.tabPage2.Controls.Add(this.button_textEncrypt);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.textBox_textInput);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(494, 233);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Text";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button_textDecrypt
+            // 
+            this.button_textDecrypt.Location = new System.Drawing.Point(13, 150);
+            this.button_textDecrypt.Name = "button_textDecrypt";
+            this.button_textDecrypt.Size = new System.Drawing.Size(475, 23);
+            this.button_textDecrypt.TabIndex = 4;
+            this.button_textDecrypt.Text = "Decrypt";
+            this.button_textDecrypt.UseVisualStyleBackColor = true;
+            this.button_textDecrypt.Click += new System.EventHandler(this.button_textDecrypt_Click);
+            // 
+            // textbox_textPassword
+            // 
+            this.textbox_textPassword.Location = new System.Drawing.Point(54, 179);
+            this.textbox_textPassword.Name = "textbox_textPassword";
+            this.textbox_textPassword.Size = new System.Drawing.Size(333, 20);
+            this.textbox_textPassword.TabIndex = 3;
+            // 
+            // button_textEncrypt
+            // 
+            this.button_textEncrypt.Location = new System.Drawing.Point(10, 126);
+            this.button_textEncrypt.Name = "button_textEncrypt";
+            this.button_textEncrypt.Size = new System.Drawing.Size(475, 23);
+            this.button_textEncrypt.TabIndex = 2;
+            this.button_textEncrypt.Text = "Encrypt";
+            this.button_textEncrypt.UseVisualStyleBackColor = true;
+            this.button_textEncrypt.Click += new System.EventHandler(this.button_textEncrypt_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Text area:";
+            // 
+            // textBox_textInput
+            // 
+            this.textBox_textInput.Location = new System.Drawing.Point(10, 23);
+            this.textBox_textInput.Multiline = true;
+            this.textBox_textInput.Name = "textBox_textInput";
+            this.textBox_textInput.Size = new System.Drawing.Size(475, 75);
+            this.textBox_textInput.TabIndex = 0;
+            // 
             // openFileDialog_loadFile
             // 
             this.openFileDialog_loadFile.FileName = "openFileDialog1";
             // 
-            // textbox_loadedFileName
+            // button_fileEncrypt
             // 
-            this.textbox_loadedFileName.Location = new System.Drawing.Point(77, 46);
-            this.textbox_loadedFileName.Name = "textbox_loadedFileName";
-            this.textbox_loadedFileName.Size = new System.Drawing.Size(172, 20);
-            this.textbox_loadedFileName.TabIndex = 6;
+            this.button_fileEncrypt.Location = new System.Drawing.Point(7, 160);
+            this.button_fileEncrypt.Name = "button_fileEncrypt";
+            this.button_fileEncrypt.Size = new System.Drawing.Size(481, 23);
+            this.button_fileEncrypt.TabIndex = 12;
+            this.button_fileEncrypt.Text = "Encrypt and save to file...";
+            this.button_fileEncrypt.UseVisualStyleBackColor = true;
+            this.button_fileEncrypt.Click += new System.EventHandler(this.button_fileEncrypt_Click);
             // 
-            // picturebox_loadedFileIcon
+            // textbox_filePassword
             // 
-            this.picturebox_loadedFileIcon.Location = new System.Drawing.Point(7, 45);
-            this.picturebox_loadedFileIcon.Name = "picturebox_loadedFileIcon";
-            this.picturebox_loadedFileIcon.Size = new System.Drawing.Size(64, 64);
-            this.picturebox_loadedFileIcon.TabIndex = 1;
-            this.picturebox_loadedFileIcon.TabStop = false;
+            this.textbox_filePassword.Location = new System.Drawing.Point(77, 125);
+            this.textbox_filePassword.Name = "textbox_filePassword";
+            this.textbox_filePassword.Size = new System.Drawing.Size(387, 20);
+            this.textbox_filePassword.TabIndex = 13;
             // 
-            // textbox_loadedFileExtension
+            // button_fileDecrypt
             // 
-            this.textbox_loadedFileExtension.Location = new System.Drawing.Point(269, 46);
-            this.textbox_loadedFileExtension.Name = "textbox_loadedFileExtension";
-            this.textbox_loadedFileExtension.Size = new System.Drawing.Size(100, 20);
-            this.textbox_loadedFileExtension.TabIndex = 7;
-            this.textbox_loadedFileExtension.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(74, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "File name";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Icon";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(266, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "File extension";
-            // 
-            // textbox_loadedFileSize
-            // 
-            this.textbox_loadedFileSize.Location = new System.Drawing.Point(77, 89);
-            this.textbox_loadedFileSize.Name = "textbox_loadedFileSize";
-            this.textbox_loadedFileSize.Size = new System.Drawing.Size(172, 20);
-            this.textbox_loadedFileSize.TabIndex = 11;
+            this.button_fileDecrypt.Location = new System.Drawing.Point(7, 189);
+            this.button_fileDecrypt.Name = "button_fileDecrypt";
+            this.button_fileDecrypt.Size = new System.Drawing.Size(481, 23);
+            this.button_fileDecrypt.TabIndex = 14;
+            this.button_fileDecrypt.Text = "Decrypt and save to file...";
+            this.button_fileDecrypt.UseVisualStyleBackColor = true;
+            this.button_fileDecrypt.Click += new System.EventHandler(this.button_fileDecrypt_Click);
             // 
             // Form1
             // 
@@ -187,6 +279,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_loadedFileIcon)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -207,6 +301,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textbox_loadedFileSize;
+        private System.Windows.Forms.Button button_textEncrypt;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox_textInput;
+        private System.Windows.Forms.TextBox textbox_textPassword;
+        private System.Windows.Forms.Button button_textDecrypt;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog_saveFile;
+        private System.Windows.Forms.Button button_fileEncrypt;
+        private System.Windows.Forms.TextBox textbox_filePassword;
+        private System.Windows.Forms.Button button_fileDecrypt;
     }
 }
 

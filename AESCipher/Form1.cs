@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AESCipher.CipherMethods;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,7 +26,7 @@ namespace AESCipher
 
             //clearFields();
             textbox_fileDir.Text = chosenFileDir;
-            loadFile(chosenFileDir);
+            loadFileInfo(chosenFileDir);
         }
         private string chooseFile()
         {
@@ -37,7 +38,7 @@ namespace AESCipher
             }
             return String.Empty;
         }
-        private void loadFile(String fileDir)
+        private void loadFileInfo(string fileDir)
         {
             
             //Invalid file
@@ -93,6 +94,71 @@ namespace AESCipher
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_textEncrypt_Click(object sender, EventArgs e)
+        {
+            AES aes = new AES();
+            Console.WriteLine(aes.encryptString(textBox_textInput.Text, textbox_textPassword.Text));
+        }
+
+        private void button_textDecrypt_Click(object sender, EventArgs e)
+        {
+            AES aes = new AES();
+            Console.WriteLine(aes.decryptString(textBox_textInput.Text, textbox_textPassword.Text));
+        }
+        private string chooseSaveFileFolder()
+        {
+            saveFileDialog_saveFile.Reset();
+            if (saveFileDialog_saveFile.ShowDialog() == DialogResult.OK)
+            {
+                return saveFileDialog_saveFile.FileName;
+            }
+            return String.Empty;
+        }
+
+        private void button_fileEncrypt_Click(object sender, EventArgs e)
+        {
+            AES aes = new AES();
+            if (textbox_fileDir.Text == "") { return; }
+            String filePath = chooseSaveFileFolder();
+            if (filePath == String.Empty) { return; }
+            if (!File.Exists(filePath) && File.Exists(textbox_fileDir.Text))
+            {
+                //Get bytes of decrypted file
+                byte[] encryptedFile = aes.encryptFile(System.IO.File.ReadAllBytes(textbox_fileDir.Text), textbox_filePassword.Text);
+                if (encryptedFile.Length == 0)
+                {
+                    //If array length is 0
+                    Console.WriteLine("ERROR ENCRYPTING");
+                    return;
+                }
+
+                //Write the file
+                File.WriteAllBytes(filePath + ".AES", encryptedFile);
+            }
+        }
+
+        private void button_fileDecrypt_Click(object sender, EventArgs e)
+        {
+            AES aes = new AES();
+            if (textbox_fileDir.Text == "") { return; }
+            String filePath = chooseSaveFileFolder();
+            if (filePath == String.Empty) { return; }
+            if (!File.Exists(filePath) && File.Exists(textbox_fileDir.Text))
+            {
+                //Get bytes of decrypted file
+                byte[] decryptedFile = aes.decryptFile(System.IO.File.ReadAllBytes(textbox_fileDir.Text), textbox_filePassword.Text);
+                if(decryptedFile.Length == 0)
+                {
+                    //If array length is 0
+                    Console.WriteLine("ERROR DECRYPTING");
+                    return;
+                }
+
+                //Write the file
+                File.WriteAllBytes(filePath, decryptedFile);
+            }
         }
     }
 }
