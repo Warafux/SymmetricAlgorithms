@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,83 @@ namespace AESCipher
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button_loadFile_Click(object sender, EventArgs e)
+        {
+            String chosenFileDir = chooseFile();
+            if (chosenFileDir == String.Empty) { return; }
+
+            //clearFields();
+            textbox_fileDir.Text = chosenFileDir;
+            loadFile(chosenFileDir);
+        }
+        private string chooseFile()
+        {
+            openFileDialog_loadFile.FilterIndex = 1;
+            openFileDialog_loadFile.Multiselect = false;
+            if (openFileDialog_loadFile.ShowDialog() == DialogResult.OK)
+            {
+                return openFileDialog_loadFile.FileName;
+            }
+            return String.Empty;
+        }
+        private void loadFile(String fileDir)
+        {
+            
+            //Invalid file
+            if (!isValidFile(fileDir)){ return; }
+
+            FileInfo loadedFileInfo = new FileInfo(fileDir);
+            
+            //FILE ICON
+            Bitmap fileIcon_Original = Icon.ExtractAssociatedIcon(fileDir).ToBitmap();
+            Bitmap fileIcon_Resized = new Bitmap(fileIcon_Original, new Size(64, 64));
+            picturebox_loadedFileIcon.Image = fileIcon_Resized;
+
+            //FILE NAME
+            textbox_loadedFileName.Text = loadedFileInfo.Name;
+
+            //FILE EXTENSION
+            textbox_loadedFileExtension.Text = loadedFileInfo.Extension;
+
+            //FILE SIZE
+            textbox_loadedFileSize.Text = this.getFormattedFileSize(loadedFileInfo.Length);
+        }
+
+        private string getFormattedFileSize(long length)
+        {
+            if (length < 1000)
+            {
+                return (length).ToString("#.##") + " B";
+            }
+            else if (length > 1000 && length < 1000000)
+            {
+                return (length / 1000f).ToString("#.##") + " KB";
+            }
+            else if (length > 1000000 && length < 1000000000)
+            {
+                return (length / 1000000f).ToString("#.##") + " MB";
+            }
+            else
+            {
+                return (length / 1000000000f).ToString("#.##") + " GB";
+            }
+        }
+
+        private bool isValidFile(String fileDir)
+        {
+            return File.Exists(fileDir);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
