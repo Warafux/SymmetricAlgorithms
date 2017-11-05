@@ -215,8 +215,13 @@ namespace AESCipher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //SymmetricAlgorithms available
+            //https://msdn.microsoft.com/en-us/library/system.security.cryptography.symmetricalgorithm(v=vs.110).aspx
             availableAlgorithms.Add(new AES());
             availableAlgorithms.Add(new DES());
+            availableAlgorithms.Add(new RC2());
+            availableAlgorithms.Add(new Rijndael());
+            availableAlgorithms.Add(new TripleDES());
             loadAvailableAlgorithms();
         }
 

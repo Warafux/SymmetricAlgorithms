@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CipherMethods\TripleDES.cs" />
+    <Compile Include="CipherMethods\Rijndael.cs" />
+    <Compile Include="CipherMethods\RC2.cs" />
     <Compile Include="CipherMethods\DES.cs" />
     <Compile Include="CipherMethods\AES.cs" />
     <Compile Include="Form1.cs">
