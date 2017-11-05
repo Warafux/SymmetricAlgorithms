@@ -1,6 +1,6 @@
 ﻿namespace SymmetricAlgorithms
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -48,6 +48,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textbox_fileDir = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textbox_textResult = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.combobox_textAlgorithm = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,8 +60,7 @@
             this.textBox_textInput = new System.Windows.Forms.TextBox();
             this.openFileDialog_loadFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_saveFile = new System.Windows.Forms.SaveFileDialog();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textbox_textResult = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_loadedFileIcon)).BeginInit();
@@ -102,7 +103,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "File";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // label8
             // 
@@ -202,7 +202,6 @@
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "File name";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textbox_loadedFileExtension
             // 
@@ -211,7 +210,6 @@
             this.textbox_loadedFileExtension.ReadOnly = true;
             this.textbox_loadedFileExtension.Size = new System.Drawing.Size(100, 20);
             this.textbox_loadedFileExtension.TabIndex = 7;
-            this.textbox_loadedFileExtension.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // picturebox_loadedFileIcon
             // 
@@ -276,10 +274,28 @@
             this.tabPage2.Text = "Text";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(13, 161);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 13);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Result:";
+            // 
+            // textbox_textResult
+            // 
+            this.textbox_textResult.Location = new System.Drawing.Point(10, 177);
+            this.textbox_textResult.Multiline = true;
+            this.textbox_textResult.Name = "textbox_textResult";
+            this.textbox_textResult.ReadOnly = true;
+            this.textbox_textResult.Size = new System.Drawing.Size(475, 50);
+            this.textbox_textResult.TabIndex = 20;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 85);
+            this.label10.Location = new System.Drawing.Point(14, 85);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(50, 13);
             this.label10.TabIndex = 19;
@@ -353,32 +369,28 @@
             // 
             this.openFileDialog_loadFile.FileName = "openFileDialog1";
             // 
-            // label11
+            // label12
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 161);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 13);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Result:";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 274);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(86, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Made by Warafu";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
-            // textbox_textResult
-            // 
-            this.textbox_textResult.Location = new System.Drawing.Point(10, 177);
-            this.textbox_textResult.Multiline = true;
-            this.textbox_textResult.Name = "textbox_textResult";
-            this.textbox_textResult.ReadOnly = true;
-            this.textbox_textResult.Size = new System.Drawing.Size(475, 50);
-            this.textbox_textResult.TabIndex = 20;
-            // 
-            // Form1
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 283);
+            this.ClientSize = new System.Drawing.Size(526, 292);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "mainForm";
+            this.ShowIcon = false;
+            this.Text = "Symmetric Algorithms";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -387,6 +399,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -424,6 +437,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textbox_textResult;
+        private System.Windows.Forms.Label label12;
     }
 }
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,13 +13,13 @@ using System.Windows.Forms;
 
 namespace SymmetricAlgorithms
 {
-    public partial class Form1 : Form
+    public partial class mainForm : Form
     {
         private iCipherMethod chosenFileAlgorithm;
         private iCipherMethod chosenTextAlgorithm;
         private List<iCipherMethod> availableAlgorithms = new List<iCipherMethod>();
         private FileInfo chosenFileInfo;
-        public Form1()
+        public mainForm()
         {
             InitializeComponent();
             this.AllowDrop = true;
@@ -110,17 +111,6 @@ namespace SymmetricAlgorithms
         {
             return File.Exists(fileDir);
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_textEncrypt_Click(object sender, EventArgs e)
         {
             this.textbox_textResult.Text = this.chosenTextAlgorithm.encryptString(textBox_textInput.Text, textbox_textPassword.Text);
@@ -208,11 +198,6 @@ namespace SymmetricAlgorithms
             }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             //SymmetricAlgorithms available
@@ -269,6 +254,11 @@ namespace SymmetricAlgorithms
         {
             //Reset result when input changes
             textbox_textResult.Text = "";
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://alexparedes.ovh/");
         }
     }
 }
