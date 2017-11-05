@@ -71,11 +71,13 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.HotTrack = true;
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(502, 259);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -120,7 +122,7 @@
             this.combobox_fileAlgorithm.Location = new System.Drawing.Point(77, 117);
             this.combobox_fileAlgorithm.Name = "combobox_fileAlgorithm";
             this.combobox_fileAlgorithm.Size = new System.Drawing.Size(165, 21);
-            this.combobox_fileAlgorithm.TabIndex = 17;
+            this.combobox_fileAlgorithm.TabIndex = 5;
             this.combobox_fileAlgorithm.SelectedValueChanged += new System.EventHandler(this.combobox_fileAlgorithm_SelectedValueChanged);
             // 
             // label7
@@ -146,7 +148,7 @@
             this.button_fileDecrypt.Location = new System.Drawing.Point(7, 194);
             this.button_fileDecrypt.Name = "button_fileDecrypt";
             this.button_fileDecrypt.Size = new System.Drawing.Size(481, 28);
-            this.button_fileDecrypt.TabIndex = 14;
+            this.button_fileDecrypt.TabIndex = 10;
             this.button_fileDecrypt.Text = "Decrypt and save to file...";
             this.button_fileDecrypt.UseVisualStyleBackColor = true;
             this.button_fileDecrypt.Click += new System.EventHandler(this.button_fileDecrypt_Click);
@@ -156,14 +158,14 @@
             this.textbox_filePassword.Location = new System.Drawing.Point(316, 118);
             this.textbox_filePassword.Name = "textbox_filePassword";
             this.textbox_filePassword.Size = new System.Drawing.Size(172, 20);
-            this.textbox_filePassword.TabIndex = 13;
+            this.textbox_filePassword.TabIndex = 6;
             // 
             // button_fileEncrypt
             // 
             this.button_fileEncrypt.Location = new System.Drawing.Point(7, 159);
             this.button_fileEncrypt.Name = "button_fileEncrypt";
             this.button_fileEncrypt.Size = new System.Drawing.Size(481, 29);
-            this.button_fileEncrypt.TabIndex = 12;
+            this.button_fileEncrypt.TabIndex = 9;
             this.button_fileEncrypt.Text = "Encrypt and save to file...";
             this.button_fileEncrypt.UseVisualStyleBackColor = true;
             this.button_fileEncrypt.Click += new System.EventHandler(this.button_fileEncrypt_Click);
@@ -174,7 +176,7 @@
             this.textbox_loadedFileSize.Name = "textbox_loadedFileSize";
             this.textbox_loadedFileSize.ReadOnly = true;
             this.textbox_loadedFileSize.Size = new System.Drawing.Size(172, 20);
-            this.textbox_loadedFileSize.TabIndex = 11;
+            this.textbox_loadedFileSize.TabIndex = 4;
             // 
             // label4
             // 
@@ -209,7 +211,7 @@
             this.textbox_loadedFileExtension.Name = "textbox_loadedFileExtension";
             this.textbox_loadedFileExtension.ReadOnly = true;
             this.textbox_loadedFileExtension.Size = new System.Drawing.Size(100, 20);
-            this.textbox_loadedFileExtension.TabIndex = 7;
+            this.textbox_loadedFileExtension.TabIndex = 3;
             // 
             // picturebox_loadedFileIcon
             // 
@@ -226,14 +228,14 @@
             this.textbox_loadedFileName.Name = "textbox_loadedFileName";
             this.textbox_loadedFileName.ReadOnly = true;
             this.textbox_loadedFileName.Size = new System.Drawing.Size(172, 20);
-            this.textbox_loadedFileName.TabIndex = 6;
+            this.textbox_loadedFileName.TabIndex = 2;
             // 
             // button_loadFile
             // 
             this.button_loadFile.Location = new System.Drawing.Point(397, 5);
             this.button_loadFile.Name = "button_loadFile";
             this.button_loadFile.Size = new System.Drawing.Size(85, 23);
-            this.button_loadFile.TabIndex = 5;
+            this.button_loadFile.TabIndex = 1;
             this.button_loadFile.Text = "Load file";
             this.button_loadFile.UseVisualStyleBackColor = true;
             this.button_loadFile.Click += new System.EventHandler(this.button_loadFile_Click);
@@ -252,7 +254,7 @@
             this.textbox_fileDir.Location = new System.Drawing.Point(45, 6);
             this.textbox_fileDir.Name = "textbox_fileDir";
             this.textbox_fileDir.Size = new System.Drawing.Size(346, 20);
-            this.textbox_fileDir.TabIndex = 3;
+            this.textbox_fileDir.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -290,7 +292,7 @@
             this.textbox_textResult.Name = "textbox_textResult";
             this.textbox_textResult.ReadOnly = true;
             this.textbox_textResult.Size = new System.Drawing.Size(475, 50);
-            this.textbox_textResult.TabIndex = 20;
+            this.textbox_textResult.TabIndex = 5;
             // 
             // label10
             // 
@@ -308,7 +310,7 @@
             this.combobox_textAlgorithm.Location = new System.Drawing.Point(66, 82);
             this.combobox_textAlgorithm.Name = "combobox_textAlgorithm";
             this.combobox_textAlgorithm.Size = new System.Drawing.Size(160, 21);
-            this.combobox_textAlgorithm.TabIndex = 18;
+            this.combobox_textAlgorithm.TabIndex = 1;
             this.combobox_textAlgorithm.SelectedValueChanged += new System.EventHandler(this.combobox_textAlgorithm_SelectedValueChanged);
             // 
             // label9
@@ -335,14 +337,14 @@
             this.textbox_textPassword.Location = new System.Drawing.Point(297, 83);
             this.textbox_textPassword.Name = "textbox_textPassword";
             this.textbox_textPassword.Size = new System.Drawing.Size(188, 20);
-            this.textbox_textPassword.TabIndex = 3;
+            this.textbox_textPassword.TabIndex = 2;
             // 
             // button_textEncrypt
             // 
             this.button_textEncrypt.Location = new System.Drawing.Point(10, 106);
             this.button_textEncrypt.Name = "button_textEncrypt";
             this.button_textEncrypt.Size = new System.Drawing.Size(475, 23);
-            this.button_textEncrypt.TabIndex = 2;
+            this.button_textEncrypt.TabIndex = 3;
             this.button_textEncrypt.Text = "Encrypt";
             this.button_textEncrypt.UseVisualStyleBackColor = true;
             this.button_textEncrypt.Click += new System.EventHandler(this.button_textEncrypt_Click);
