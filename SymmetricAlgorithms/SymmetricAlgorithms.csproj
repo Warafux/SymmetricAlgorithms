@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6D784410-FB64-477A-9A39-8EE4956D3A65}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AESCipher</RootNamespace>
-    <AssemblyName>AESCipher</AssemblyName>
+    <RootNamespace>SymmetricAlgorithms</RootNamespace>
+    <AssemblyName>SymmetricAlgorithms</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
