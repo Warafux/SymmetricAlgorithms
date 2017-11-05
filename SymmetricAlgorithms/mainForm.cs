@@ -99,7 +99,11 @@ namespace SymmetricAlgorithms
 
         private string getFormattedFileSize(long length)
         {
-            if (length < 1000)
+            if (length == 0)
+            {
+                return "Empty (0 B)";
+            }
+            else if (length < 1000)
             {
                 return (length).ToString("#.##") + " B";
             }
@@ -248,7 +252,7 @@ namespace SymmetricAlgorithms
 
             combobox_textAlgorithm.ValueMember = "iCipherMethod";
             combobox_textAlgorithm.DisplayMember = "name";
-            combobox_textAlgorithm.DataSource = tmp_dt;
+            combobox_textAlgorithm.DataSource = tmp_dt.Copy();//Copy to avoid mirror(same algorithm chosen in text and file)
         }
 
         private void combobox_textAlgorithm_SelectedValueChanged(object sender, EventArgs e)
