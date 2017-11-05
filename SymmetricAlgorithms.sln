@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AESCipher", "AESCipher\AESCipher.csproj", "{6D784410-FB64-477A-9A39-8EE4956D3A65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymmetricAlgorithms", "AESCipher\SymmetricAlgorithms.csproj", "{6D784410-FB64-477A-9A39-8EE4956D3A65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
