@@ -85,6 +85,16 @@ namespace SymmetricAlgorithms
 
             //FILE SIZE
             textbox_loadedFileSize.Text = this.getFormattedFileSize(loadedFileInfo.Length);
+
+            //Check if extension is the same as any of the available algorithms
+            foreach(iCipherMethod symmetricAlgorithm in this.availableAlgorithms)
+            {
+                if(loadedFileInfo.Extension == "." + symmetricAlgorithm.getName())
+                {
+                    this.combobox_fileAlgorithm.SelectedIndex = combobox_fileAlgorithm.FindStringExact(symmetricAlgorithm.getName());
+                    break;
+                }
+            }
         }
 
         private string getFormattedFileSize(long length)
