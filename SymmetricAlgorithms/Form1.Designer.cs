@@ -1,4 +1,4 @@
-﻿namespace AESCipher
+﻿namespace SymmetricAlgorithms
 {
     partial class Form1
     {

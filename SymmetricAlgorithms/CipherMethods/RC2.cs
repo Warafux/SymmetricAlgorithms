@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AESCipher.CipherMethods
+namespace SymmetricAlgorithms.CipherMethods
 {
     class RC2 : iCipherMethod
     {
