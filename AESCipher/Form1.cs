@@ -21,8 +21,29 @@ namespace AESCipher
         public Form1()
         {
             InitializeComponent();
+            this.AllowDrop = true;
+            this.DragEnter += new DragEventHandler(mainForm_DragEnter);
+            this.DragDrop += new DragEventHandler(mainForm_DragDrop);
         }
-
+        //EVENTS
+        //DRAG n DROP EVENTS
+        void mainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (!isValidFile(files[0])) {
+                MessageBox.Show("Invalid file.", "ERROR");
+                return;
+            }
+            textbox_fileDir.Text = files[0];
+            loadFileInfo(files[0]);
+        }
+        void mainForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
         private void button_loadFile_Click(object sender, EventArgs e)
         {
             String chosenFileDir = chooseFile();
