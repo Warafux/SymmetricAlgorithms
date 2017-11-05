@@ -195,6 +195,7 @@ namespace AESCipher
         private void Form1_Load(object sender, EventArgs e)
         {
             availableAlgorithms.Add(new AES());
+            availableAlgorithms.Add(new DES());
             loadAvailableAlgorithms();
         }
 
