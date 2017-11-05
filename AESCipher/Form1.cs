@@ -14,6 +14,10 @@ namespace AESCipher
 {
     public partial class Form1 : Form
     {
+        private iCipherMethod chosenFileAlgorithm;
+        private iCipherMethod chosenTextAlgorithm;
+        private List<iCipherMethod> availableAlgorithms = new List<iCipherMethod>();
+        private FileInfo chosenFileInfo;
         public Form1()
         {
             InitializeComponent();
@@ -45,7 +49,7 @@ namespace AESCipher
             if (!isValidFile(fileDir)){ return; }
 
             FileInfo loadedFileInfo = new FileInfo(fileDir);
-            
+            this.chosenFileInfo = loadedFileInfo;
             //FILE ICON
             Bitmap fileIcon_Original = Icon.ExtractAssociatedIcon(fileDir).ToBitmap();
             Bitmap fileIcon_Resized = new Bitmap(fileIcon_Original, new Size(64, 64));
@@ -98,14 +102,17 @@ namespace AESCipher
 
         private void button_textEncrypt_Click(object sender, EventArgs e)
         {
-            AES aes = new AES();
-            Console.WriteLine(aes.encryptString(textBox_textInput.Text, textbox_textPassword.Text));
+            this.textbox_textResult.Text = this.chosenTextAlgorithm.encryptString(textBox_textInput.Text, textbox_textPassword.Text);
         }
 
         private void button_textDecrypt_Click(object sender, EventArgs e)
         {
-            AES aes = new AES();
-            Console.WriteLine(aes.decryptString(textBox_textInput.Text, textbox_textPassword.Text));
+            string decryptedMessage = this.chosenTextAlgorithm.decryptString(textBox_textInput.Text, textbox_textPassword.Text);
+            if(decryptedMessage.Length == 0)
+            {
+                MessageBox.Show("Error decrypting.", "ERROR");
+            }
+            this.textbox_textResult.Text = decryptedMessage;
         }
         private string chooseSaveFileFolder()
         {
@@ -119,46 +126,122 @@ namespace AESCipher
 
         private void button_fileEncrypt_Click(object sender, EventArgs e)
         {
-            AES aes = new AES();
             if (textbox_fileDir.Text == "") { return; }
+            //Files bigger than 500MB are forbidden (RAM ISSUES)
+            if (this.chosenFileInfo != null && this.chosenFileInfo.Length > 1000 * 1000 * 500) {
+                MessageBox.Show($"The file is too heavy. ({this.getFormattedFileSize(this.chosenFileInfo.Length)} / 500MB)", "ERROR");
+                return;
+            }
             String filePath = chooseSaveFileFolder();
             if (filePath == String.Empty) { return; }
             if (!File.Exists(filePath) && File.Exists(textbox_fileDir.Text))
             {
                 //Get bytes of decrypted file
-                byte[] encryptedFile = aes.encryptFile(System.IO.File.ReadAllBytes(textbox_fileDir.Text), textbox_filePassword.Text);
+                byte[] encryptedFile = this.chosenFileAlgorithm.encryptFile(System.IO.File.ReadAllBytes(textbox_fileDir.Text), textbox_filePassword.Text);
                 if (encryptedFile.Length == 0)
                 {
                     //If array length is 0
-                    Console.WriteLine("ERROR ENCRYPTING");
+                    MessageBox.Show("Error encrypting.", "ERROR");
                     return;
                 }
 
                 //Write the file
-                File.WriteAllBytes(filePath + ".AES", encryptedFile);
+                File.WriteAllBytes(filePath + this.chosenFileAlgorithm.getExtensionEncrypt(), encryptedFile);
             }
         }
 
         private void button_fileDecrypt_Click(object sender, EventArgs e)
         {
-            AES aes = new AES();
             if (textbox_fileDir.Text == "") { return; }
+            //Files bigger than 500MB are forbidden (RAM ISSUES)
+            if (this.chosenFileInfo != null && this.chosenFileInfo.Length > 1000 * 1000 * 500)
+            {
+                MessageBox.Show($"The file is too heavy. ({this.getFormattedFileSize(this.chosenFileInfo.Length)} / 500MB)", "ERROR");
+                return;
+            }
             String filePath = chooseSaveFileFolder();
             if (filePath == String.Empty) { return; }
             if (!File.Exists(filePath) && File.Exists(textbox_fileDir.Text))
             {
                 //Get bytes of decrypted file
-                byte[] decryptedFile = aes.decryptFile(System.IO.File.ReadAllBytes(textbox_fileDir.Text), textbox_filePassword.Text);
+                byte[] decryptedFile = this.chosenFileAlgorithm.decryptFile(System.IO.File.ReadAllBytes(textbox_fileDir.Text), textbox_filePassword.Text);
                 if(decryptedFile.Length == 0)
                 {
                     //If array length is 0
-                    Console.WriteLine("ERROR DECRYPTING");
+                    MessageBox.Show("Error decrypting.", "ERROR");
                     return;
                 }
 
                 //Write the file
                 File.WriteAllBytes(filePath, decryptedFile);
             }
+        }
+
+        private void combobox_fileAlgorithm_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //Change chosenFileAlgorithm value when choosing another type
+            DataRowView selectedValueRow = (DataRowView)combobox_fileAlgorithm.SelectedItem;
+            if (selectedValueRow != null)
+            {
+                chosenFileAlgorithm = (iCipherMethod)selectedValueRow[1];
+            }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            availableAlgorithms.Add(new AES());
+            loadAvailableAlgorithms();
+        }
+
+        private void loadAvailableAlgorithms()
+        {
+            DataTable tmp_dt = new DataTable();
+            tmp_dt.Clear();
+            tmp_dt.Columns.Add("name", typeof(String));
+            tmp_dt.Columns.Add("iCipherMethod", typeof(iCipherMethod));
+
+            foreach (iCipherMethod algorithm in availableAlgorithms)
+            {
+                DataRow algorithmRow = tmp_dt.NewRow();
+                algorithmRow["name"] = algorithm.getName();
+                algorithmRow["iCipherMethod"] = algorithm;
+                tmp_dt.Rows.Add(algorithmRow);
+            }
+
+
+            //Reset items from combobox FILE
+            combobox_fileAlgorithm.Items.Clear();
+
+            combobox_fileAlgorithm.ValueMember = "iCipherMethod";
+            combobox_fileAlgorithm.DisplayMember = "name";
+            combobox_fileAlgorithm.DataSource = tmp_dt;
+
+            //Reset items from combobox TEXT
+            combobox_textAlgorithm.Items.Clear();
+
+            combobox_textAlgorithm.ValueMember = "iCipherMethod";
+            combobox_textAlgorithm.DisplayMember = "name";
+            combobox_textAlgorithm.DataSource = tmp_dt;
+        }
+
+        private void combobox_textAlgorithm_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DataRowView selectedValueRow = (DataRowView)combobox_textAlgorithm.SelectedItem;
+            if (selectedValueRow != null)
+            {
+                chosenTextAlgorithm = (iCipherMethod)selectedValueRow[1];
+            }
+        }
+
+        private void textBox_textInput_TextChanged(object sender, EventArgs e)
+        {
+            //Reset result when input changes
+            textbox_textResult.Text = "";
         }
     }
 }

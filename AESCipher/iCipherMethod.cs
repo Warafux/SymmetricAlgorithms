@@ -9,6 +9,7 @@ namespace AESCipher
     interface iCipherMethod
     {
         string getName();
+        string getExtensionEncrypt();
         byte[] encryptFile(byte[] file, string pass);
         byte[] decryptFile(byte[] file, string pass);
 

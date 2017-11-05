@@ -12,6 +12,7 @@ namespace AESCipher.CipherMethods
         private AesCryptoServiceProvider aes;
         private Encoding encoding;
         private string cipherName = "AES";
+        private string extensionEncrypt = ".AES";
         public AES()
         {
             this.aes = new AesCryptoServiceProvider();
@@ -64,6 +65,9 @@ namespace AESCipher.CipherMethods
         public string getName() {
             return this.cipherName;
         }
+        public string getExtensionEncrypt() {
+            return this.extensionEncrypt;
+        }
         public string encryptString(string message, string pass)
         {
             string salt = getDerivedSalt(pass);
@@ -97,10 +101,11 @@ namespace AESCipher.CipherMethods
             this.aes.Key = key;
             this.aes.IV = iv;
             ICryptoTransform decryptor = this.aes.CreateDecryptor();
-            byte[] data = Convert.FromBase64String(message);
+            
             byte[] datadecrypt;
             try
             {
+                byte[] data = Convert.FromBase64String(message);
                 datadecrypt = decryptor.TransformFinalBlock(data, 0, data.Length);
             }
             catch (Exception e)
